@@ -3,5 +3,6 @@ class User < ActiveRecord::Base
   validates :email, :password,:full_name,  presence: true
   validates_uniqueness_of :email
   validates_format_of :email, :with => /@.+\./
-   validates_length_of :password, minimum: 6
+  validates_length_of :password, minimum: 6
+  has_many :posts
 end
