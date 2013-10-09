@@ -5,6 +5,10 @@ gem 'rails', '4.0.0'
 gem 'pg'
 
 # Use sqlite3 as the database for Active Record
+group :test do
+  gem "shoulda-matchers"
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
