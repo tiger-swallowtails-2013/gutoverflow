@@ -18,7 +18,7 @@ describe UsersController do
     context "with valid attributes" do
       it "redirects to the :show page" do
         post :create, valid_params
-        expect(response).to redirect_to(user_path)
+        expect(response).to redirect_to user_path User.last
       end
     end
   end
