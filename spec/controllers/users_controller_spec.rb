@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe UsersController do
+  let(:valid_params) { {:user => FactoryGirl.attributes_for(:user)} }
   describe "Get #new" do
     it "has a 200 status code" do
       get :new
@@ -14,7 +15,6 @@ describe UsersController do
   end
 
   describe "Post #create" do
-    let(:valid_params) { {:user => FactoryGirl.attributes_for(:user)} }
     context "with valid attributes" do
       it "redirects to the :show page" do
         post :create, valid_params
@@ -24,7 +24,16 @@ describe UsersController do
   end
 
   describe "Get #show" do
-    it "assigns @user"
+      let (:fake_user) {FactoryGirl.create(:user)}
+    it "assigns @user" do
+      get :show, id: fake_user
+      expect(assigns(:user)).to eq(fake_user)
+    end
+
+    it "renders user :show profile page" do
+      get 'show', id: fake_user
+      expect(response).to render_template(:show)
+    end
   end
 end
 
